@@ -5,11 +5,11 @@ King Xerox's most popular works include glitch art in GIF formats with a focus o
 
 Clayton Campbell's glitch art is presented with more subtlety. He uses glitch effects that are visually similar to double exposures in analog photography, making the glitches appear more as a ghostly collage. His work appears to be done using standard photo manipulation, rather than directly modifying the data of an image itself.
 
-Empress Trash
+Empress Trash most recent glitch works use Artificial Intelligence in their creation. Her works tend to focus on a pastel pink-blue-purple palette, leaning towards a vapourwave aesthetic. Rather than employing actual glitch techniques in her art, she seems to lean towards abstracting the idea of a glitch, and presenting that as her subject matter.
 
-Matt Kane
+Matt Kane uses code to create his works. Much of his recent work appears to draw from printmaking and abstract techniques. Many of his works involve repetitions of patterns or line that look as though they were created with a patterned block or fabric.
 
-Adrian Cain
+Adrian Cain uses the programs Audacity, Blender, and the programming language Processing to create his works. These works look more aligned with traditional glitch art - they appear as images that look similar to the kinds of accidental glitches a person would encounter in the world. Datamoshing appears to be one of the main techniques he uses for these works.
 
 Dawnia Darkstone
 
