@@ -1,9 +1,9 @@
 # Notes from References
 
 ## Dab. (2024, August 1). 10 Digital Artists: The Best of Glitch art. DIGITAL ARTS BLOG. https://www.digitalartsblog.com/artist-spotlights/glitch-art 
-King Xerox's most popular works include glitch art in GIF formats with a focus on religious imagery. The glitch effects in his art appear to be added in post-production, rather than using a method of corrupting the data of the work itself.
+King Xerox's most popular works include glitch art in GIF formats with a focus on religious imagery. The glitch effects in his art appear to be added in post-production, rather than using a method of corrupting the data of the work itself. The effects he uses are prominent and singular, tending to be the focal point of the piece.
 
-Clayton Campbell
+Clayton Campbell's glitch art is presented with more subtlety. He uses glitch effects that are visually similar to double exposures in analog photography, making the glitches appear more as a ghostly collage. His work appears to be done using standard photo manipulation, rather than directly modifying the data of an image itself.
 
 Empress Trash
 
