@@ -1,9 +1,19 @@
 # ARTH 251 Final Project
-## Hannah Kostuk
-sak675 11318046
+Hannah Kostuk
+
+sak675 
+
+11318046
+
+## Files in this Repo
+| File Name | Description |
+| -------- | -------- |
+| README | Statement on technology used, references, feedback type  |
+| notes   | Notes from references |
+| main   | The file to run the code from |
+
 
 ## Feedback Type: B
-
 
 ## Statement on Technology Used
 | Name of Technology | Use Case |
