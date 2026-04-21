@@ -8,8 +8,8 @@ sak675
 ## Files in this Repo
 | File Name | Description |
 | -------- | -------- |
-| README | Statement on technology used, references, feedback type  |
-| notes   | Notes from references |
+| README | Statement on technology used, references, feedback type. Recommended to view with a markdown previewer  |
+| notes   | Notes from references. Recommended to view with a markdown previewer |
 | main   | The file to run the code from |
 
 

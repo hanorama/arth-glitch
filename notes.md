@@ -1,0 +1,30 @@
+# Notes from References
+
+## Dab. (2024, August 1). 10 Digital Artists: The Best of Glitch art. DIGITAL ARTS BLOG. https://www.digitalartsblog.com/artist-spotlights/glitch-art 
+King Xerox's most popular works include glitch art in GIF formats with a focus on religious imagery. The glitch effects in his art appear to be added in post-production, rather than using a method of corrupting the data of the work itself.
+
+Clayton Campbell
+
+Empress Trash
+
+Matt Kane
+
+Adrian Cain
+
+Dawnia Darkstone
+
+Max Osiris
+
+Jennifer Juniper Stratford
+
+Neurocolor
+
+Kate the Cursed
+
+## Ďurišinová, M. (2026, February 6). 6 Types of Search Algorithms You Need to Know. Luigi’s Box. https://www.luigisbox.com/blog/types-of-search-algorithms/ 
+
+## Phil. (2016a, June 16). How to glitch images using Processing scripts. Datamoshing. http://datamoshing.com/2016/06/16/how-to-glitch-images-using-processing-scripts/ 
+
+## Phil. (2016b, June 26). How to glitch images with WordPad. Datamoshing. http://datamoshing.com/2016/06/26/how-to-glitch-images-with-wordpad/ 
+
+## Schnutzel. (2021). The program processing this data does. If you open a text file in an image viewer, it will try to [Comment on the blog post “I’ve always understood that computers work in binary. But programming languages use letters, numbers, symbols, and punctuation. How does the program get translated in binary that the computer understands?”] Reddit. https://www.reddit.com/r/explainlikeimfive/comments/o3jml9/comment/h2cchpj/ 
