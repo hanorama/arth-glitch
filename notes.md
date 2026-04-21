@@ -11,11 +11,11 @@ Matt Kane uses code to create his works. Much of his recent work appears to draw
 
 Adrian Cain uses the programs Audacity, Blender, and the programming language Processing to create his works. These works look more aligned with traditional glitch art - they appear as images that look similar to the kinds of accidental glitches a person would encounter in the world. Datamoshing appears to be one of the main techniques he uses for these works.
 
-Dawnia Darkstone
+Dawnia Darkstone creates glitch art that is often heavily abstracted. The glitches in many of her works are the art itself, as whatever the image was before is almost always completely obscured by the glitch. She has also created glitch art by circuitbending different devices, such as cameras. Much of her art is also described by her as digital collages.
 
-Max Osiris
+Max Osiris has many works that draw on themes of psychedelic drugs. His works do not all necessarily use glitch techniques, but they do seem to have glitch-adjacent elements, such as collage techniques.
 
-Jennifer Juniper Stratford
+Jennifer Juniper Stratford was listed as a glitch artist in this article, but her work is almsot all retro-themed video art. While cool, I don't consider her to be a glitch artist, rather a video artist that is well-versed in the techniques video artists used throughout the 60's-90's.
 
 Neurocolor
 
