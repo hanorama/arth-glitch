@@ -17,9 +17,9 @@ Max Osiris has many works that draw on themes of psychedelic drugs. His works do
 
 Jennifer Juniper Stratford was listed as a glitch artist in this article, but her work is almsot all retro-themed video art. While cool, I don't consider her to be a glitch artist, rather a video artist that is well-versed in the techniques video artists used throughout the 60's-90's.
 
-Neurocolor
+Neurocolor makes works that seem to combine the different types of glitch art made by the artists previously mentioned in this list. His approach mixes the collage style with repetition and more traditional glitch aesthetics.
 
-Kate the Cursed
+Kate the Cursed creates work that I would define as computer graphics or computer art, with glitch art sprinkled in. Her focus is primarily on 80s-90s themed graphics, with glitch art interrupting the rigid computer graphics she creates.
 
 ## Ďurišinová, M. (2026, February 6). 6 Types of Search Algorithms You Need to Know. Luigi’s Box. https://www.luigisbox.com/blog/types-of-search-algorithms/ 
 
