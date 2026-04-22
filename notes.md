@@ -59,8 +59,11 @@ Ternary search
 - O($log_3$ n)
 - Useful for sorting through image text: NO
 
+Given the unordered nature of photo data loaded as text, linear search would be best for finding all instances of a specific value.
+
 ## Phil. (2016a, June 16). How to glitch images using Processing scripts. Datamoshing. http://datamoshing.com/2016/06/16/how-to-glitch-images-using-processing-scripts/ 
 
 ## Phil. (2016b, June 26). How to glitch images with WordPad. Datamoshing. http://datamoshing.com/2016/06/26/how-to-glitch-images-with-wordpad/ 
 
 ## Schnutzel. (2021). The program processing this data does. If you open a text file in an image viewer, it will try to [Comment on the blog post “I’ve always understood that computers work in binary. But programming languages use letters, numbers, symbols, and punctuation. How does the program get translated in binary that the computer understands?”] Reddit. https://www.reddit.com/r/explainlikeimfive/comments/o3jml9/comment/h2cchpj/ 
+The way that images convert into text is not random, although it appears that way. It seems that the "random" output is determined by the binary data of the image - meaning, there must be a logical system that creates the random-seeming output text that the image gives us, in a means similar to homomorphism. This would imply that there is a way to identify the rules that are used to convert image binary into text, which is what makes me think that there may be a way to glitch images in a predictable manner. Hopefully, this project will help shed light on what these conversion patterns may be.

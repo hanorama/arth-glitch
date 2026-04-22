@@ -5,7 +5,6 @@
 # check out if anyone has done work like this before - if applicable, learn from their process
 # choose 2-3 selection algorithms
 # find + choose a good image processing library for python
-#
 
 # -- PROGRAMMING -- 
 # choose a photo to upload
