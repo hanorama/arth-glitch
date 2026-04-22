@@ -23,6 +23,42 @@ Kate the Cursed creates work that I would define as computer graphics or compute
 
 ## Ďurišinová, M. (2026, February 6). 6 Types of Search Algorithms You Need to Know. Luigi’s Box. https://www.luigisbox.com/blog/types-of-search-algorithms/ 
 
+Linear search
+- iterates sequentially
+- O(n) complexity
+- good for unordered data, like image text
+- Useful for sorting through image text: YES
+
+Binary search
+- splits lists in half until it finds the target
+- O(log n) complexity
+- good for ordered data
+- Useful for sorting through image text: NO
+
+Interpolation search
+- a "smarter" version of binary search, where the search adjusts its position based on the value it was given to search for
+- O(n log n)
+- good for ordered data
+- Useful for sorting through image text: NO
+
+Jump search
+- Checks every Kth number in the list. If it finds a value that is within K distance from the target, it uses linear search to try and find the target
+- O($\sqrt{n}$)
+- good for ordered data
+- Useful for sorting through image text: NO
+
+Exponential search
+- similar to jump search, but the number to search by increases exponentially
+- O(log n)
+- good for ordered data
+- Useful for sorting through image text: NO
+
+Ternary search
+- similar to binary search, but it splits the list into three rather than half
+- requires more searches than binary search
+- O($log_3$ n)
+- Useful for sorting through image text: NO
+
 ## Phil. (2016a, June 16). How to glitch images using Processing scripts. Datamoshing. http://datamoshing.com/2016/06/16/how-to-glitch-images-using-processing-scripts/ 
 
 ## Phil. (2016b, June 26). How to glitch images with WordPad. Datamoshing. http://datamoshing.com/2016/06/26/how-to-glitch-images-with-wordpad/ 
