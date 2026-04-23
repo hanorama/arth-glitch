@@ -1,21 +1,24 @@
-# TO - DO :
+'''
+TO - DO :
 
-# -- PRE-PROGRAMMING --
-# visit source sites again - DONE
-# choose 2-3 selection algorithms
-# find + choose a good image processing library for python
+-- PRE-PROGRAMMING --
+visit source sites again - DONE
+choose 2-3 selection algorithms - DONE
+find + choose a good image processing library for python - DONE
 
-# -- PROGRAMMING -- 
-# choose photo(s) to upload - DONE
-# read photo as text
-# parse through photo, making selections/replacements/removals based on selection method
-# execute through photo text in an iterative fashion, saving a copy of the photo text every so often
-# then, save the series of images to disk
-# if possible, turn series of images into a video and save THAT to disk instead/as well
-
-# end of to - do.
-
+-- PROGRAMMING -- 
+choose photo(s) to upload - DONE
+read photo as text - DONE
+parse through photo, making selections/replacements/removals based on selection method - DONE
+execute through photo text in an iterative fashion, saving a copy of the photo text every so often - DONE
+then, save the series of images to disk - DONE
+if possible, turn series of images into a video and save THAT to disk instead/as well - in progress
+------------------
+'''
+ 
 import random
+import glob
+import cv2 # in terminal: pip install opencv-python
 
 # welcome + file input
 print("Welcome to the glitch generator.")
@@ -36,16 +39,15 @@ with open(IMG_TO_GLITCH, 'rb') as in_data:
 
 # keep the header of the image safe
 # if we don't, then it won't be able to convert back to an image
-# jpg and jpeg headers end with \xff\xda
+# jpg and jpeg headers end with \xff\xda - find these to get closer to the start of the image proper
 ba_length = len(ba)
-
 #get SOS index
 for i in range(ba_length):
     current_hex = ba[i]
     if i < ba_length - 1:
         next_hex = ba[i+1]
-        if (current_hex == 0xff and next_hex == 0xda): ## \xff and \xda
-            SOS_index = i + 2 + (ba[i+2] << 8) + ba[i+3]  # Start Of Scan index (where the image starts, after the header ends)
+        if (current_hex == 0xff and next_hex == 0xda): ## find \xff and \xda at end of image header
+            SOS_index = i + 2 + (ba[i+2] << 8) + ba[i+3]  # Start Of Scan index + reading the info it tells us where to start (read the information bits on where the image starts)
             #print("SOS Index: " + str(SOS_index))
             #print("Current and next hex: " + str(current_hex) + " " + str(next_hex))
             break #found end of header, now exit the loop
@@ -57,7 +59,7 @@ temp_ba = bytearray(ba)
 for frame in range(60): # range determines how many frames will be produced
 
     for c in range(5): # change 5 bytes each frame
-        i = random.randint(SOS_index + (frame * 1000), ba_length - 3)
+        i = random.randint(SOS_index + (frame * 1000), ba_length - 10)
 
         # skip markers and stuffed bytes
         if temp_ba[i] == 0xFF or (temp_ba[i-1] == 0xFF and temp_ba[i] == 0x00):
@@ -72,23 +74,24 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"glitch1/{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch1/frame_{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 
 print("Glitch 1 done.")
-# this one took a lot of tinkering to get looking ok. 
-# I ended up having 5 bytes be changed per frame, since any less was underwhelming, and any more wiped the whole picture out too quickly.
-# Using the bit-shift ended up being stable enough. From this first glitch type I have learned that it is very easy to corrupt an image
-# if you are careless about which exact bits you change. For example, we skip markers and stuffed bytes, because images are loaded using
-# "chunks", and these prevent data loss from leaking into other chunks. If you change those, then it removes the safeguards and makes the
-# entire image more likely to become swamped in grey.
-# The line "i = random.randint(SOS_index + (frame * 1000), ba_length - 3)" is what causes the right-alignedness of the glitches.
-# The way images are loaded, modifying information on the right of the image is less destructive than modifying those on the left. I can't
-# remember the exact reasoning behind this, but I know if I remove (frame * 1000) it make the lower limit for the random number much
-# lower, and results in more image corruptions.
-# despite all the tinkering, I still had to leave the amount of bytes adjusted per frame to be relatively low (5) because
-# the image was becoming totally corrupted too quickly.
-
+'''
+this one took a lot of tinkering to get looking ok. 
+I ended up having 5 bytes be changed per frame, since any less was underwhelming, and any more wiped the whole picture out too quickly.
+Using the bit-shift ended up being stable enough. From this first glitch type I have learned that it is very easy to corrupt an image
+if you are careless about which exact bits you change. For example, we skip markers and stuffed bytes, because images are loaded using
+"chunks", and these prevent data loss from leaking into other chunks. If you change those, then it removes the safeguards and makes the
+entire image more likely to become swamped in grey.
+The line "i = random.randint(SOS_index + (frame * 1000), ba_length - 10)" is what causes the right-alignedness of the glitches.
+The way images are loaded, modifying information on the right of the image is less destructive than modifying those on the left. I can't
+remember the exact reasoning behind this, but I know if I remove (frame * 1000) it make the lower limit for the random number much
+lower, and results in more image corruptions.
+despite all the tinkering, I still had to leave the amount of bytes adjusted per frame to be relatively low (5) because
+the image was becoming totally corrupted too quickly.
+'''
 
 #GLITCH TYPE 2
 # "deletion" (replace with 0) at random
@@ -96,7 +99,7 @@ temp_ba = bytearray(ba)
 for frame in range(60): # range determines how many frames will be produced
 
     for c in range(100): # change 5 bytes each frame
-        i = random.randint(SOS_index + (frame * 1000), ba_length - 3)
+        i = random.randint(SOS_index + (frame * 1000), ba_length - 10)
 
         # # skip markers and stuffed bytes
         if temp_ba[i] == 0xFF or (temp_ba[i-1] == 0xFF and temp_ba[i] == 0x00):
@@ -111,14 +114,16 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"glitch2/frame_{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch2/{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 
 print("Glitch 2 done.")
-# true deletion won't work due to how images are encoded. If the length of the array changes, the
-# entire structure will be off and will instantly corrupt the image. If you replace instead of delete,
-# then the image won't corrupt, and you can make a lot more replacements than with the bit shifting
-# method. I am not sure exactly why, but this method seems to be very stable.
+'''
+true deletion won't work due to how images are encoded. If the length of the array changes, the
+entire structure will be off and will instantly corrupt the image. If you replace instead of delete,
+then the image won't corrupt, and you can make a lot more replacements than with the bit shifting
+method. I am not sure exactly why, but this method seems to be very stable.
+'''
 
 #GLITCH TYPE 3
 # light replacement (replace the first several instances of a random number with 255)
@@ -139,6 +144,32 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"glitch3/frame_{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch3/{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 print("Glitch 3 done.")
+'''
+I find this method of glitching to be the most interesting, but also the most volatile. This one, when you get a good number to replace,
+can look like it's dissolving. It almost looks like it might be picking similarly-valued spots on the image, although
+I can't say that for sure. I hoped going into this that I would be able to start learning the rules of how the image binary works,
+but I realize now there's more going on than a three-day project can handle. That said, I tried out three different methods, and they each
+look different on every run, so I think I still somewhat achieved my goal.
+'''
+
+# convert image subdirectories into videos
+for sub in range(1,4):
+    frames = sorted(glob.glob("glitch" + str(sub) +"/frame_*.jpg"))
+    frame = cv2.imread(frames[0])
+    height, width, _ = frame.shape
+
+    vid = cv2.VideoWriter(
+        "glitch" + str(sub) +".mp4", # filename
+        cv2.VideoWriter_fourcc(*"mp4v"), # fourcc
+        7.5,  # frames per sec
+        (width, height) # match the size of the images for the video
+    )
+
+    for current_frame_path in frames:
+        frame = cv2.imread(current_frame_path)
+        vid.write(frame)
+
+    vid.release()
