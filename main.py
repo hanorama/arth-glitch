@@ -12,10 +12,15 @@ read photo as text - DONE
 parse through photo, making selections/replacements/removals based on selection method - DONE
 execute through photo text in an iterative fashion, saving a copy of the photo text every so often - DONE
 then, save the series of images to disk - DONE
-if possible, turn series of images into a video and save THAT to disk instead/as well - in progress
+if possible, turn series of images into a video and save THAT to disk instead/as well - in progress - DONE
+
+NOTE:
+If you have the VSCode minimap open, you can navigate using the region tags easier.
+Anywhere that you see "# region ..." defines a collapsable space for easier viewing.
 ------------------
 '''
- 
+
+# region SETUP 
 import random
 import glob
 import cv2 # in terminal: pip install opencv-python
@@ -37,8 +42,9 @@ with open(IMG_TO_GLITCH, 'rb') as in_data:
     in_data = in_data.read() # reads in an object of class bytes
     ba = bytearray(in_data) # converts to a bytearray so we can modify the bytes directly. prints as hexadecimal (\x00)
 
-# keep the header of the image safe
-# if we don't, then it won't be able to convert back to an image
+# keep the header of the image safe by getting the SOS (Start of Scan) index. 
+# This will let us access the bits that stores information on where the actual image starts
+# if we don't, then it won't be able to convert the text back to an image
 # jpg and jpeg headers end with \xff\xda - find these to get closer to the start of the image proper
 ba_length = len(ba)
 #get SOS index
@@ -47,19 +53,20 @@ for i in range(ba_length):
     if i < ba_length - 1:
         next_hex = ba[i+1]
         if (current_hex == 0xff and next_hex == 0xda): ## find \xff and \xda at end of image header
-            SOS_index = i + 2 + (ba[i+2] << 8) + ba[i+3]  # Start Of Scan index + reading the info it tells us where to start (read the information bits on where the image starts)
-            #print("SOS Index: " + str(SOS_index))
+            safe_start_index = i + 2 + (ba[i+2] << 8) + ba[i+3]  # i + 2 skips the next hexcode (the end of the SOS section), and the next part ((ba[i+2] << 8) + ba[i+3]) tells you where the sensitive header data truly ends
+            #print("SOS Index: " + str(safe_start_index))
             #print("Current and next hex: " + str(current_hex) + " " + str(next_hex))
             break #found end of header, now exit the loop
+# endregion
 
 
-# GLITCH TYPE 1
+# region GLITCH TYPE 1
 # bit swapping at random
-temp_ba = bytearray(ba)
+temp_ba = bytearray(ba) # make copy of original image bytearray
 for frame in range(60): # range determines how many frames will be produced
 
     for c in range(5): # change 5 bytes each frame
-        i = random.randint(SOS_index + (frame * 1000), ba_length - 10)
+        i = random.randint(safe_start_index + (frame * 1000), ba_length - 10)
 
         # skip markers and stuffed bytes
         if temp_ba[i] == 0xFF or (temp_ba[i-1] == 0xFF and temp_ba[i] == 0x00):
@@ -85,21 +92,22 @@ Using the bit-shift ended up being stable enough. From this first glitch type I 
 if you are careless about which exact bits you change. For example, we skip markers and stuffed bytes, because images are loaded using
 "chunks", and these prevent data loss from leaking into other chunks. If you change those, then it removes the safeguards and makes the
 entire image more likely to become swamped in grey.
-The line "i = random.randint(SOS_index + (frame * 1000), ba_length - 10)" is what causes the right-alignedness of the glitches.
+The line "i = random.randint(safe_start_index + (frame * 1000), ba_length - 10)" is what causes the right-alignedness of the glitches.
 The way images are loaded, modifying information on the right of the image is less destructive than modifying those on the left. I can't
 remember the exact reasoning behind this, but I know if I remove (frame * 1000) it make the lower limit for the random number much
 lower, and results in more image corruptions.
 despite all the tinkering, I still had to leave the amount of bytes adjusted per frame to be relatively low (5) because
 the image was becoming totally corrupted too quickly.
 '''
+# endregion
 
-#GLITCH TYPE 2
+# region GLITCH TYPE 2
 # "deletion" (replace with 0) at random
-temp_ba = bytearray(ba)
+temp_ba = bytearray(ba) # make copy of original image bytearray
 for frame in range(60): # range determines how many frames will be produced
 
     for c in range(100): # change 5 bytes each frame
-        i = random.randint(SOS_index + (frame * 1000), ba_length - 10)
+        i = random.randint(safe_start_index + (frame * 1000), ba_length - 10)
 
         # # skip markers and stuffed bytes
         if temp_ba[i] == 0xFF or (temp_ba[i-1] == 0xFF and temp_ba[i] == 0x00):
@@ -124,10 +132,11 @@ entire structure will be off and will instantly corrupt the image. If you replac
 then the image won't corrupt, and you can make a lot more replacements than with the bit shifting
 method. I am not sure exactly why, but this method seems to be very stable.
 '''
+# endregion
 
-#GLITCH TYPE 3
+# region GLITCH TYPE 3
 # light replacement (replace the first several instances of a random number with 255)
-temp_ba = bytearray(ba)
+temp_ba = bytearray(ba) # make copy of original image bytearray
 num_to_replace = random.randint(4,20) # note - for real5.png, 4, 5, 9, 18 work really well. 11, 13 is ok. 15 turns green.
 counter = 0
 print("Number to find: " + str(num_to_replace))
@@ -154,7 +163,9 @@ I can't say that for sure. I hoped going into this that I would be able to start
 but I realize now there's more going on than a three-day project can handle. That said, I tried out three different methods, and they each
 look different on every run, so I think I still somewhat achieved my goal.
 '''
+# endregion
 
+# region VIDEO
 # convert image subdirectories into videos
 for sub in range(1,4):
     frames = sorted(glob.glob("glitch" + str(sub) +"/frame_*.jpg"))
@@ -173,3 +184,6 @@ for sub in range(1,4):
         vid.write(frame)
 
     vid.release()
+
+    print("Video " + str(sub) + " ready to view from computer File Explorer.")
+# endregion

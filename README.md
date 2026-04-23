@@ -24,7 +24,7 @@ sak675
 | glitchvid3.mp4 | Video version of the glitch3 photo series. Cannot open in VSCode - must run from file explorer.|
 
 ## How to Use
-1. Clone this repo (in terminal: git clone https://git.cs.usask.ca/sak675/arth-glitch.git).
+1. Clone this repo if you don't already have a copy (in terminal: git clone https://git.cs.usask.ca/sak675/arth-glitch.git).
 2. Open arth-glitch in VSCode (or some other code editor - this is just what I use and what I know works).
 3. Open main.py.
 4. If "import cv2" has a warning squiggle under it:
@@ -32,7 +32,7 @@ sak675
     2. In terminal, type: pip install opencv-python
     3. Hit enter. It should download the package
 5. Hit CTRL + F5 to run main.py.
-6. Instructions to run the main program will write out to the terminal. Comments within the code explain how each glitch effect is working, and what I did to create them.
+6. Instructions on how to use the main program will write out to the terminal (which should open automatically). Comments within the code explain how each glitch effect works, and what I did to create them.
 7. You may see messages in the terminal like "Corrupt JPEG data: premature end of data segment", "[ WARN:0@0.508] global cap_ffmpeg_impl.hpp:2774 writeFrame write frame skipped - expected 3 channels but got 1", "[ WARN:0@0.508] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame", or something else similar. This is just the video library complaining about working with corrupted image files - this is normal and will not disrupt how the program runs.
 8. To watch the resultant videos from each glitch method, right-click on the file name in the VSCode file explorer, and click "Reveal in File Explorer". This will open your computer files. Click on the video there to view them.
 
