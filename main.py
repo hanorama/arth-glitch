@@ -22,8 +22,8 @@ import cv2 # in terminal: pip install opencv-python
 
 # welcome + file input
 print("Welcome to the glitch generator.")
-print("Please enter the name of the image to glitch, including the file extension (.jpg, .png, etc.).")
-print("If you do not want to add an image to this repo, leave the input blank and press enter to use a preset.")
+print("Please enter the name of the image to glitch, including the file extension (.jpg and .jpeg only, please).")
+print("If you do not want to add your own image to this repo, leave the input blank and press enter to use a random preset image.")
 IMG_TO_GLITCH = input("")
 if (IMG_TO_GLITCH == ""):
     temp_rand = random.randint(0,1)
@@ -114,7 +114,7 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"glitch2/{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch2/frame_{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 
 print("Glitch 2 done.")
@@ -136,7 +136,7 @@ for frame in range(60): # range determines how many frames will be produced
     for c in range(2): # change 2 bytes each frame
         current_byte = temp_ba.index(num_to_replace) # get the index of the first of this value in the list
         counter += 1
-        print(str(counter) + ": Found number " + str(num_to_replace) + " to replace at index " + str(current_byte))
+        #print(str(counter) + ": Found number " + str(num_to_replace) + " to replace at index " + str(current_byte))
         temp_ba[current_byte] = 0xFF #255
 
     # make sure the last two bytes are 0xFF and 0xD9, or else the image will completely corrupt
@@ -144,7 +144,7 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"glitch3/{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch3/frame_{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 print("Glitch 3 done.")
 '''
@@ -162,7 +162,7 @@ for sub in range(1,4):
     height, width, _ = frame.shape
 
     vid = cv2.VideoWriter(
-        "glitch" + str(sub) +".mp4", # filename
+        "glitchvid" + str(sub) +".mp4", # filename
         cv2.VideoWriter_fourcc(*"mp4v"), # fourcc
         7.5,  # frames per sec
         (width, height) # match the size of the images for the video

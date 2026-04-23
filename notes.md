@@ -1,4 +1,5 @@
-# Notes from References
+# Notes from Some References
+References which do not have notes below were used primarily for programming purposes, such as learning how to use a new library.
 
 ## Dab. (2024, August 1). 10 Digital Artists: The Best of Glitch art. DIGITAL ARTS BLOG. https://www.digitalartsblog.com/artist-spotlights/glitch-art 
 King Xerox's most popular works include glitch art in GIF formats with a focus on religious imagery. The glitch effects in his art appear to be added in post-production, rather than using a method of corrupting the data of the work itself. The effects he uses are prominent and singular, tending to be the focal point of the piece.
