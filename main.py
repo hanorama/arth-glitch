@@ -23,8 +23,11 @@ print("Please enter the name of the image to glitch, including the file extensio
 print("If you do not want to add an image to this repo, leave the input blank and press enter to use a preset.")
 IMG_TO_GLITCH = input("")
 if (IMG_TO_GLITCH == ""):
-    IMG_TO_GLITCH = "real5.jpg"
-    #IMG_TO_GLITCH = "wisdomteeth.png"
+    temp_rand = random.randint(0,1)
+    if temp_rand == 0:
+        IMG_TO_GLITCH = "real5.jpg"
+    else:
+        IMG_TO_GLITCH = "wisdomteeth.jpg"
 
 # open the binary data of the image
 with open(IMG_TO_GLITCH, 'rb') as in_data:
@@ -43,8 +46,8 @@ for i in range(ba_length):
         next_hex = ba[i+1]
         if (current_hex == 0xff and next_hex == 0xda): ## \xff and \xda
             SOS_index = i + 2 + (ba[i+2] << 8) + ba[i+3]  # Start Of Scan index (where the image starts, after the header ends)
-            print("SOS Index: " + str(SOS_index))
-            print("Current and next hex: " + str(current_hex) + " " + str(next_hex))
+            #print("SOS Index: " + str(SOS_index))
+            #print("Current and next hex: " + str(current_hex) + " " + str(next_hex))
             break #found end of header, now exit the loop
 
 
@@ -69,8 +72,10 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"bitswap_frame_{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch1/{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
+
+print("Glitch 1 done.")
 # this one took a lot of tinkering to get looking ok. 
 # I ended up having 5 bytes be changed per frame, since any less was underwhelming, and any more wiped the whole picture out too quickly.
 # Using the bit-shift ended up being stable enough. From this first glitch type I have learned that it is very easy to corrupt an image
@@ -106,10 +111,34 @@ for frame in range(60): # range determines how many frames will be produced
     temp_ba[-1] = 0xD9
 
     # save this frame (writing it as byte data again)
-    with open(f"replace_0_frame_{frame:03}.jpg", "wb") as out_data:
+    with open(f"glitch2/frame_{frame:03}.jpg", "wb") as out_data:
         out_data.write(temp_ba)
 
+print("Glitch 2 done.")
 # true deletion won't work due to how images are encoded. If the length of the array changes, the
 # entire structure will be off and will instantly corrupt the image. If you replace instead of delete,
 # then the image won't corrupt, and you can make a lot more replacements than with the bit shifting
 # method. I am not sure exactly why, but this method seems to be very stable.
+
+#GLITCH TYPE 3
+# light replacement (replace the first several instances of a random number with 255)
+temp_ba = bytearray(ba)
+num_to_replace = random.randint(4,20) # note - for real5.png, 4, 5, 9, 18 work really well. 11, 13 is ok. 15 turns green.
+counter = 0
+print("Number to find: " + str(num_to_replace))
+for frame in range(60): # range determines how many frames will be produced
+
+    for c in range(2): # change 2 bytes each frame
+        current_byte = temp_ba.index(num_to_replace) # get the index of the first of this value in the list
+        counter += 1
+        print(str(counter) + ": Found number " + str(num_to_replace) + " to replace at index " + str(current_byte))
+        temp_ba[current_byte] = 0xFF #255
+
+    # make sure the last two bytes are 0xFF and 0xD9, or else the image will completely corrupt
+    temp_ba[-2] = 0xFF
+    temp_ba[-1] = 0xD9
+
+    # save this frame (writing it as byte data again)
+    with open(f"glitch3/frame_{frame:03}.jpg", "wb") as out_data:
+        out_data.write(temp_ba)
+print("Glitch 3 done.")
