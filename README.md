@@ -24,7 +24,7 @@ sak675
 | glitchvid3.mp4 | Video version of the glitch3 photo series. Cannot open in VSCode - must run from file explorer.|
 
 ## How to Use
-1. Clone this repo if you don't already have a copy (in terminal: git clone https://git.cs.usask.ca/sak675/arth-glitch.git).
+1. Clone this repo if you don't already have a copy
 2. Open arth-glitch in VSCode (or some other code editor - this is just what I use and what I know works).
 3. Open main.py.
 4. If "import cv2" has a warning squiggle under it:
