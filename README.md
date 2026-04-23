@@ -46,6 +46,7 @@ sak675
 | Google   | Search engine |
 | File Explorer   | For sifting through my files quickly |
 | Media Player   | For watching the videos (can't open them in VSCode, must find them via file explorer and then open in media player) |
+| Git and Github | For version control and hosting the project online |
 
 ## References
 
